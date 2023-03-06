@@ -24,6 +24,7 @@ export default class HomeScreen extends Component {
         const value = await AsyncStorage.getItem("whatsthat_session_token");
         if (value == null) {
             this.props.navigation.navigate("LogInForm");
+            console.log("Signed Out");
         }
     };
 

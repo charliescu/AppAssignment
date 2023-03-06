@@ -47,7 +47,7 @@ export default class SignUp extends Component {
         first_name: firstName,
         last_name: lastName,
         email: email,
-        password
+        password: password,
       })
     })
       .then((response) => {
@@ -101,32 +101,32 @@ export default class SignUp extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
-    textAlign: "center",
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 10,
-    marginBottom: 10,
-    width: '100%',
+      height: 40,
+      borderColor: 'gray',
+      textAlign: "center",
+      borderWidth: 1,
+      borderRadius: 10,
+      padding: 10,
+      marginBottom: 10,
+      width: '100%',
   },
   button: {
-    backgroundColor: '#0066CC',
-    borderRadius: 10,
-    padding: 10,
-    margin: 10,
-    width: 150,
-    alignItems: 'center',
+      backgroundColor: '#0066CC',
+      borderRadius: 10,
+      padding: 10,
+      margin: 10,
+      width: 150,
+      alignItems: 'center',
   },
   buttonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
+      color: '#FFFFFF',
+      fontSize: 14,
+      fontWeight: 'bold',
   },
 });
