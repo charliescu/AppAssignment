@@ -132,7 +132,7 @@ export default class Account extends Component {
                         <Text style={styles.buttonText}>Change Details</Text>
                     </TouchableOpacity>
     
-                    <TouchableOpacity style={styles.button} onPress={() => this.logout()}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('ConfirmLogout')}>
                         <Text style={styles.buttonText}>Log Out</Text>
                     </TouchableOpacity>
                 </View>
