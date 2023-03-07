@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default class Account extends Component {
@@ -17,7 +17,9 @@ export default class Account extends Component {
     }
 
     async get_profile_image() {
+        
         const user_id = await AsyncStorage.getItem("whatsthat_user_id");
+
         fetch("http://localhost:3333/api/1.0.0/user/" + user_id + "/photo", {
             method: "GET",
             headers: {
@@ -40,7 +42,7 @@ export default class Account extends Component {
             })
     }
 
- 
+
     async GetUser() {
         const user_id = await AsyncStorage.getItem("whatsthat_user_id");
         console.log("User ID:", user_id);
@@ -102,27 +104,41 @@ export default class Account extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={{flex: 1}}>
+                {this.state.photo && (
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                        <Image
+                            source={{uri: this.state.photo}}
+                            style={{width: 100, height: 100}}
+                        />
+                    </View>
+                )}
+    
                 {this.state.user && (
-                    <View style={styles.userContainer}>
-                        {/* <Text>User ID: {this.state.user.user_id}</Text> */}
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <Text>First Name: {this.state.user.first_name}</Text>
                         <Text>Last Name: {this.state.user.last_name}</Text>
                         <Text>Email: {this.state.user.email}</Text>
                     </View>
                 )}
-                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('ChangeDetails',
-                 {orig_firstName: this.state.user.first_name, orig_lastName: this.state.user.last_name, orig_email: this.state.user.email })}>
-                    <Text style={styles.buttonText}>Change Details</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.button} onPress={() => this.logout()}>
-                    <Text style={styles.buttonText}>Log Out</Text>
-                </TouchableOpacity>
+    
+                <View style={{flex: 1}}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('TakeProfilePicture')}>
+                        <Text style={styles.buttonText}>Change Profile Picture</Text>
+                    </TouchableOpacity>
+    
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('ChangeDetails',
+                        { orig_firstName: this.state.user.first_name, orig_lastName: this.state.user.last_name, orig_email: this.state.user.email })}>
+                        <Text style={styles.buttonText}>Change Details</Text>
+                    </TouchableOpacity>
+    
+                    <TouchableOpacity style={styles.button} onPress={() => this.logout()}>
+                        <Text style={styles.buttonText}>Log Out</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-
         );
-    }
+    }    
 }
 
 const styles = StyleSheet.create({
@@ -141,8 +157,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         margin: 10,
-        width: 400,
+        width: 300,
         alignItems: 'center',
+        alignSelf: 'center',
     },
     buttonText: {
         color: '#FFFFFF',
