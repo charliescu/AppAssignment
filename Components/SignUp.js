@@ -25,7 +25,7 @@ export default class SignUp extends Component {
     this.setState({ email });
   };
 
-  handlPasswordChange = (password) => {
+  handlePasswordChange = (password) => {
     this.setState({ password });
   };
 
@@ -86,8 +86,8 @@ export default class SignUp extends Component {
         <TextInput
           style={styles.input}
           placeholder="Password"
-          onChangeText={this.handlPasswordChange}
-          value={this.state.pass}
+          onChangeText={this.handlePasswordChange}
+          value={this.state.password}
           secureTextEntry={true}
         />
 
