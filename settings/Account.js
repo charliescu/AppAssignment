@@ -12,7 +12,7 @@ export default class Account extends Component {
     }
 
     componentDidMount() {
-        this.get_profile_image()
+        this.get_profile_image();
         this.GetUser();
     }
 
@@ -65,6 +65,7 @@ export default class Account extends Component {
             })
             .then((data) => {
                 this.setState({ user: data });
+                // this.GetUser();
             })
             .catch((error) => {
                 console.log(error);

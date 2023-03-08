@@ -16,6 +16,9 @@ export default class AddContact extends Component {
     const user_id = this.state.user_id.trim();
 
     if (user_id.length > 0) {
+
+      this.props.navigation.navigate('Contact');
+
       return fetch('http://localhost:3333/api/1.0.0/user/' + user_id + '/contact', {
         method: 'POST',
         headers: {
@@ -73,19 +76,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   input: {
-    width: 300,
-    height: 50,
+    height: 40,
+    borderColor: 'gray',
+    textAlign: "center",
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 10,
     padding: 10,
-    marginVertical: 10,
-  },
+    marginBottom: 10,
+    width: '85%',
+},
   button: {
     backgroundColor: '#0066CC',
     borderRadius: 10,
     padding: 10,
     margin: 10,
-    width: 300,
+    width: 150,
     alignItems: 'center',
   },
   buttonText: {
