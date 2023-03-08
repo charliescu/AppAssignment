@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet, Image, FlatList } from 'react
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
-export default class Contact extends Component {
+export default class BlockedContacts extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,8 +15,8 @@ export default class Contact extends Component {
     this.GetContact()
   }
 
-  async GetContact(GetContact) {
-    return fetch(`http://localhost:3333/api/1.0.0/contacts`, {
+  async GetContact() {
+    return fetch(`http://localhost:3333/api/1.0.0/blocked`, {
       method: 'GET',
       headers: {
         "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token"),
@@ -44,14 +44,6 @@ export default class Contact extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('AddContact')}>
-            <Text style={styles.buttonText}>Add a Contact</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('BlockContact')}>
-            <Text style={styles.buttonText}>Block a Contact</Text>
-          </TouchableOpacity>
-        </View>
         <FlatList
           data={this.state.contacts}
           renderItem={({ item }) => (
@@ -61,7 +53,7 @@ export default class Contact extends Component {
                 <Text style={styles.emailText}>{item.email}</Text>
               </View>
               <TouchableOpacity style={styles.deleteButton}>
-                <Text style={styles.deleteButtonText} onPress={() => this.props.navigation.navigate("DeleteContact", { user_id: item.user_id })}>X</Text>
+                <Text style={styles.deleteButtonText} onPress={() => this.props.navigation.navigate("UnblockContact", { user_id: item.user_id })}>X</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -77,23 +69,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-  },
-  buttonContainer: {
-    justifyContent: 'flex-start',
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: '#0066CC',
-    borderRadius: 10,
-    padding: 10,
-    margin: 10,
-    width: 300,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
   contactInfoContainer: {
     flex: 1,

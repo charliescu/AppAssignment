@@ -19,8 +19,8 @@ export default class Settings extends Component {
                     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Friends')}>
                         <Text style={styles.buttonText}>Friends</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Contact')}>
-                        <Text style={styles.buttonText}>Add a Contact</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('BlockedContacts')}>
+                        <Text style={styles.buttonText}>Blocked Contacts</Text>
                     </TouchableOpacity>
                 </View>
             </View>

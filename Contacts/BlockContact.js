@@ -3,20 +3,20 @@ import { Text, View, TouchableOpacity, StyleSheet, Image, TextInput } from 'reac
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
-export default class AddContact extends Component {
+export default class BlockContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user_id: "",
     }
-    this.AddContact = this.AddContact.bind(this);
+    this.blockContact = this.blockContact.bind(this);
   }
 
-  async AddContact() {
+  async blockContact() {
     const user_id = this.state.user_id.trim();
 
     if (user_id.length > 0) {
-      return fetch('http://localhost:3333/api/1.0.0/user/' + user_id + '/contact', {
+      return fetch('http://localhost:3333/api/1.0.0/user/' + user_id + '/block', {
         method: 'POST',
         headers: {
           "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token"),
@@ -28,7 +28,7 @@ export default class AddContact extends Component {
             this.props.navigation.navigate('Contact');
             return response.text();
           } else if (response.status === 400) {
-            throw 'Cant Add Yourself';
+            throw 'Cant Block Yourself';
           } else if (response.status === 401) {
             throw 'Unorthorized';
           } else if (response.status === 404) {
@@ -39,7 +39,6 @@ export default class AddContact extends Component {
         })
         .then((data) => {
           console.log(data);
-          this.props.navigation.navigate('Contact');
         })
         .catch((error) => {
           console.log(error);
@@ -58,8 +57,8 @@ export default class AddContact extends Component {
           value={this.state.user_id}
           placeholder="Enter User ID"
         />
-        <TouchableOpacity style={styles.button} onPress={this.AddContact}>
-          <Text style={styles.buttonText}>Add Contact</Text>
+        <TouchableOpacity style={styles.button} onPress={this.blockContact}>
+          <Text style={styles.buttonText}>Block Contact</Text>
         </TouchableOpacity>
       </View>
     );
