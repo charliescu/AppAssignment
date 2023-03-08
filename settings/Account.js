@@ -116,9 +116,9 @@ export default class Account extends Component {
     
                 {this.state.user && (
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                        <Text>First Name: {this.state.user.first_name}</Text>
-                        <Text>Last Name: {this.state.user.last_name}</Text>
-                        <Text>Email: {this.state.user.email}</Text>
+                        <Text style={styles.text}>First Name: {this.state.user.first_name}</Text>
+                        <Text style={styles.text}>Last Name: {this.state.user.last_name}</Text>
+                        <Text style={styles.text}>Email: {this.state.user.email}</Text>
                     </View>
                 )}
     
@@ -165,5 +165,10 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 18,
         fontWeight: 'bold',
+    },
+    text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 20,
     },
 });

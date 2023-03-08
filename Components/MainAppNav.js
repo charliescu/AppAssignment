@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Chats from '../Nav/Chats';
 import SettingsNav from '../Nav/SettingsNav';
-import Users from '../Nav/Users';
+import ContactNav from '../Nav/ContactNav';
 
 const Tab = createBottomTabNavigator();
 
@@ -32,7 +32,7 @@ export default class HomeScreen extends Component {
         return (
                 <Tab.Navigator>
                     <Tab.Screen name="Chats" component={Chats} />
-                    <Tab.Screen name="User" component={Users} />
+                    <Tab.Screen name="User" component={ContactNav} />
                     <Tab.Screen name="Settings" component={SettingsNav} />
                 </Tab.Navigator>
         );
