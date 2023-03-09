@@ -39,7 +39,6 @@ export default class AddContact extends Component {
         })
         .then((data) => {
           console.log(data);
-          this.props.navigation.navigate('Contact');
         })
         .catch((error) => {
           console.log(error);

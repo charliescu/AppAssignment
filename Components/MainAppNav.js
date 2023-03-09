@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Chats from '../Nav/Chats';
 import SettingsNav from '../Nav/SettingsNav';
 import ContactNav from '../Nav/ContactNav';
+import ChatsNav from '../Nav/ChatsNav';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +31,7 @@ export default class HomeScreen extends Component {
     render() {
         return (
                 <Tab.Navigator>
-                    <Tab.Screen name="Chats" component={Chats} />
+                    <Tab.Screen name="Chats" component={ChatsNav} />
                     <Tab.Screen name="User" component={ContactNav} />
                     <Tab.Screen name="Settings" component={SettingsNav} />
                 </Tab.Navigator>
