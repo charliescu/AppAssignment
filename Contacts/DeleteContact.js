@@ -14,8 +14,8 @@ export default class DeleteContact extends Component {
 
     async delete() {
         const { user_id } = this.props.route.params;
-        return fetch('http://localhost:3333/api/1.0.0/user/' + user_id + '/block', {
-            method: 'POST',
+        return fetch('http://localhost:3333/api/1.0.0/user/' + user_id + '/contact', {
+            method: 'DELETE',
             headers: {
                 "X-Authorization": await AsyncStorage.getItem("whatsthat_session_token"),
                 'Content-Type': 'application/json'

@@ -9,7 +9,7 @@ import ChatsNav from '../Nav/ChatsNav';
 
 const Tab = createBottomTabNavigator();
 
-export default class HomeScreen extends Component {
+export default class MainAppNav extends Component {
     componentDidMount() {
         this.unsubscribe = this.props.navigation.addListener('focus', () => {
             this.checkLoggedIn();

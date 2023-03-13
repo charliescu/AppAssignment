@@ -15,7 +15,7 @@ export default class Contact extends Component {
     this.GetContact()
   }
 
-  async GetContact(GetContact) {
+  async GetContact() {
     return fetch(`http://localhost:3333/api/1.0.0/contacts`, {
       method: 'GET',
       headers: {

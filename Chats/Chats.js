@@ -57,7 +57,9 @@ export default class Chats extends Component {
           renderItem={({ item }) => (
             <View style={styles.contactContainer}>
               <View style={styles.contactInfoContainer}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('SingleChat', { chat_id: item.chat_id})}>
                 <Text style={styles.nameText}>{item.name}</Text>
+                </TouchableOpacity>
               </View>
             </View>
           )}

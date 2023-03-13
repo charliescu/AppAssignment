@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 
 
 export default class SignUp extends Component {
@@ -55,7 +55,6 @@ export default class SignUp extends Component {
       })
       .catch((error) => {
         console.error(error);
-        Alert.alert('Sign Up failed');
       });
   };
 
