@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
@@ -7,6 +7,7 @@ export default class SingleChat extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading: true,
             chat: [],
         };
     }
@@ -39,7 +40,10 @@ export default class SingleChat extends Component {
                 }
             })
             .then((data) => {
-                this.setState({ chat: data });
+                this.setState({
+                    isLoading: false,
+                    chat: data
+                });
             })
             .catch((error) => {
                 console.log(error);
@@ -48,73 +52,57 @@ export default class SingleChat extends Component {
 
     render() {
         const { name, creator } = this.state.chat;
+        if (this.state.isLoading) {
+            return (
+                <View style={styles.container}>
+                    <ActivityIndicator />
+                </View>
+            )
+        }else{
+        console.log(this.state.chat)
         return (
-          <View style={styles.container}>
-            <Text>{name}</Text>
-            <Text>{creator.first_name} {creator.last_name}</Text>
-          </View>
+            
+            <View>
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>{name}</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('SingleChatInfo', { chat_id: this.state.chat.chat_id})}>
+                        <Text style={styles.buttonText}>Button</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         );
-      }
+        }
     }
+}
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#fff',
+    },
+    header: {
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingTop: 20,
+        paddingBottom: 10,
+        backgroundColor: 'lightblue',
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
     },
-    buttonContainer: {
-        justifyContent: 'flex-start',
-        marginBottom: 10,
-    },
-    button: {
-        backgroundColor: '#0066CC',
-        borderRadius: 10,
-        padding: 10,
-        margin: 10,
-        width: 300,
-        alignItems: 'center',
-    },
-    buttonText: {
-        color: '#FFFFFF',
+    headerText: {
         fontSize: 18,
         fontWeight: 'bold',
     },
-    contactInfoContainer: {
-        flex: 1,
-        flexDirection: 'column',
-    },
-    nameText: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    emailText: {
-        flex: 1,
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    contactContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: 'lightgrey',
-        padding: 10,
-        marginVertical: 8,
-        marginHorizontal: 16,
+    button: {
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        backgroundColor: '#007aff',
         borderRadius: 5,
-        width: 350,
     },
-    deleteButton: {
-        backgroundColor: 'red',
-        borderRadius: 2,
-        padding: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    deleteButtonText: {
-        color: '#FFFFFF',
+    buttonText: {
         fontSize: 16,
-        fontWeight: 'bold',
+        color: '#fff',
     },
 });

@@ -1,7 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SettingsNav from '../Nav/SettingsNav';
 import ContactNav from '../Nav/ContactNav';
@@ -31,9 +29,9 @@ export default class MainAppNav extends Component {
     render() {
         return (
                 <Tab.Navigator>
-                    <Tab.Screen name="Chats" component={ChatsNav} />
-                    <Tab.Screen name="User" component={ContactNav} />
-                    <Tab.Screen name="Settings" component={SettingsNav} />
+                    <Tab.Screen name="Chats" component={ChatsNav} options={{ headerShown: false }} />
+                    <Tab.Screen name="User" component={ContactNav} options={{ headerShown: false }}/>
+                    <Tab.Screen name="Settings" component={SettingsNav} options={{ headerShown: false }}/>
                 </Tab.Navigator>
         );
     }
